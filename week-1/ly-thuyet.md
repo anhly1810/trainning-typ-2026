@@ -164,3 +164,25 @@ LIMIT 3;     --đọc tiếp 3 dòng tiếp theo khi id > 6
 - Khi nào cần gom nhiều thao tác vào 1 transaction? Khi có từ 2 thao tác trở lên mà thao tác này chỉ đúng nếu thao tác kia cũng xong
 - COMMIT, ROLLBACK   --xem VD trong queries.sql
 Ví dụ: chuyển tiền — trừ tài khoản A + cộng tài khoản B phải thành công cùng nhau, fail thì rollback cả hai
+# PHẦN 2: OOP
+## OOP TRONG JAVA
+1. Các tính chất: Encapsulation, Inheritance, Polymorphism, Abstraction
+- Encapsulation: giấu dữ liệu bên trong, chỉ cho truy cập qua các phương thức được kiểm soát. Giống ATM: bạn không thò tay vào két tiền, chỉ dùng nút bấm
+- Inheritance: class con dùng lại thuộc tính và phương thức của class cha (extends). Quan hệ “là một” (Dog là một Animal).
+- Polymorphism: cùng một lời gọi nhưng hành vi khác nhau tùy đối tượng thực tế.
+- Abstraction: chỉ cho thấy “làm gì” va giấu “làm như thế nào”. Giống lái xe: bạn chỉ cần biết đạp ga thì xe chạy, không cần biết động cơ bên trong.
+2. Class, Abstract Class, Interface — khi nào dùng cái nào?
+- Class: là bản thiết kế đầy đủ, tạo dc object = new.
+- Abstract class: Lớp chưa hoàn chỉnh: có thể chứa phương thức có thân (đã cài đặt) và phương thức abstract (để con tự cài). Không new trực tiếp được
+- Interface: Một bản hợp đồng: liệt kê “phải làm được những gì”, lớp nào implements thì bắt buộc cài đặt. Một class có thể implements nhiều interface.
+- Khi nào dùng cái nào?
+  + Class: Khi cần đôis tượng cụ thể.
+  + Abstract class: Các lớp con cùng bản chất và muốn chia sẻ code, thuộc tính chung 
+  + Interface: Chỉ muốn quy định khả năng/hợp đồng, các lớp không liên quan nhau cũng dùng được (chim, máy bay đều bay được)
+## Dependency Injection (DI) & Inversion of Control (IoC)
+1. Khái niệm, ví dụ bằng Java thuần (không dùng framework)
+- Dependency: khi class A cần class B để làm việc thì A phụ thuộc B.
+- VD: 
+
+2. Tại sao DI giúp code dễ test, dễ thay đổi?
+- Đổi từ Email sang SMS chỉ cần đổi chỗ ghép nối trong main, không động vào OrderService. Thêm cách gửi mới (Zalo, Push) chỉ cần viết thêm class implements MessageSender. Đây là nguyên tắc Open/Closed: mở để mở rộng, đóng để sửa đổi. Còn khi test, ta không muốn gửi email thật. Nhờ DI, ta tiêm một đối tượng giả.
