@@ -1,0 +1,89 @@
+{
+  "info": {
+    "name": "Tuan2 Book API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://127.0.0.1:8000" }
+  ],
+  "item": [
+    {
+      "name": "Author - Create",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Robert C. Martin\",\n  \"bio\": \"Author of Clean Code\"\n}"
+        },
+        "url": "{{base_url}}/api/authors/"
+      }
+    },
+    {
+      "name": "Author - List",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/authors/?page=1&size=10"
+      }
+    },
+    {
+      "name": "Book - Create",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Clean Code\",\n  \"author\": 1,\n  \"price\": \"120000.00\",\n  \"published_year\": 2008,\n  \"quantity\": 15\n}"
+        },
+        "url": "{{base_url}}/api/books/"
+      }
+    },
+    {
+      "name": "Book - List (paginated)",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/books/?page=1&size=10"
+      }
+    },
+    {
+      "name": "Book - Search",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/books/?search=clean"
+      }
+    },
+    {
+      "name": "Book - Get by id",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/books/1/"
+      }
+    },
+    {
+      "name": "Book - Update",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Clean Code (2nd Edition)\",\n  \"author\": 1,\n  \"price\": \"150000.00\",\n  \"published_year\": 2008,\n  \"quantity\": 20\n}"
+        },
+        "url": "{{base_url}}/api/books/1/"
+      }
+    },
+    {
+      "name": "Book - Delete",
+      "request": {
+        "method": "DELETE",
+        "url": "{{base_url}}/api/books/1/"
+      }
+    },
+    {
+      "name": "Book - Not found (404 demo)",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/books/999/"
+      }
+    }
+  ]
+}
